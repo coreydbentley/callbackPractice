@@ -23,12 +23,13 @@ and what you should write is the favNum function that makes the code above work,
 */
 
 
-
-  //Code Here for first
+function first(theArray, cb){
+  cb(theArray[0]);
+}
   
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 first(names, function(firstName){
-  console.log('The first name in names is ', firstName)
+  console.log('The first name in names is', firstName)
 });
 
 
@@ -38,11 +39,13 @@ first(names, function(firstName){
 
 
 
-  //Code Here for last
+function last(theArray, cb){
+  cb(theArray[theArray.length - 1]);
+}
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 last(names, function(lastName){
-  console.log('The last name in names is ', lastName);
+  console.log('The last name in names is', lastName);
 });
 
 
@@ -56,7 +59,9 @@ last(names, function(lastName){
 
 
 
-  //Code Here for multiply
+function multiply(num1, num2, cb){
+  cb(num1 * num2);
+}
 
 multiply(4, 3, function(answer){
   console.log('The answer is ', answer); //should console.log 12
@@ -72,7 +77,20 @@ multiply(4, 3, function(answer){
 
 
 
-  //Code Here for contains
+function contains(theArray, theString, cb){
+  var value = false;
+  for(var i=0; i < theArray.length; i++){
+    if(theArray[i] === theString){
+      value =true;
+      break;
+    } else {
+      value = false; 
+    }
+  }
+
+  cb(value);
+
+}
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 contains(names, 'Colt', function(result){
@@ -92,7 +110,16 @@ contains(names, 'Colt', function(result){
 
 
 
-    //Code Here for uniq
+    function uniq(theArray, cb){
+        for(i=0; i < theArray.length; i++){
+          for(j=theArray.length-1; j > i; j--){
+             if(theArray[i] === theArray[j]){
+                theArray.splice(j, 1);
+              }
+          }
+        }
+        cb(theArray)
+    }
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 uniq(names, function(uniqArr){
@@ -108,7 +135,11 @@ uniq(names, function(uniqArr){
 
 
 
-    //Code Here for each
+    function each(theArray, cb){
+      for(i=0; i < theArray.length; i++){
+        cb(theArray[i], i );
+      }
+    }
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 each(names, function(item, indice){
@@ -125,7 +156,21 @@ each(names, function(item, indice){
 
 
 
- //code here for getUserById
+function getUserById(theObjArray, str, cb){
+   var theValue;
+   for(var i=0; i < theObjArray.length; i++){
+     for(var prop in theObjArray[i]){
+           if(str === theObjArray[i][prop]){
+              console.log(i);
+              value = i;
+           }
+      }
+   }
+   cb(theObjArray[value]);
+}
+
+ 
+
 
 var users = [
   {
